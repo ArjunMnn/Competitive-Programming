@@ -3,32 +3,32 @@
 // #include <bits/stdc++.h> 
 #include<unordered_set>
 #include<vector>
-#define ll long long  
+#define ll long long int
 #include<unordered_map>
 #include<algorithm>
 #include <cstring>
 #include <cmath>
 using namespace std;
-
-void solve(){
-    string s,t;
-    cin >> s >> t;
-    int n = t.size();
-    int i = 0,j = 0;
-    while(i<s.size() && j<t.size()){
-        if (s[i] == t[j]){
-            i++;
-            j++;
-        }
-        else{
-            j+=1;
-        }
-    }
-    cout << i+1 << endl;
-}
-
 int main(){
     
-    solve();
-    
+    int n;
+    cin >> n;
+    int arr[n];
+    for(int i = 0;i<n;i++){
+        cin >> arr[i];
+    }
+    int prev = arr[0];
+    ll maxc = INT_MIN;
+    for(int i = 1;i<n;i++){
+        if(arr[i]<prev){
+            ll c = prev - arr[i];
+            arr[i] += c;
+            prev = arr[i];
+            maxc = max(maxc,c);
+        }
+
+    }
+    cout << maxc << endl;
+
+
 }
