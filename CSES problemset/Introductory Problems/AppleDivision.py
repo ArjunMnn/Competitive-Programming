@@ -8,8 +8,8 @@ from sys import stdout
 from io import BytesIO, IOBase
 import sys
 import collections
-# sys.stdout = open("output.txt",'w')
-# sys.stdin = open("input.txt",'r')
+sys.stdout = open("output.txt",'w')
+sys.stdin = open("input.txt",'r')
 import math
 
 def ncr(n, r):
@@ -33,18 +33,18 @@ def printSubsequences(arr, index, subarr,subar):
         # Condition to avoid printing 
         # empty subsequence 
         if len(subarr) != 0: 
-            s.add((abs(sum(subarr)-sum(subar))))
+            return abs(subarr - subar)
       
     else: 
         # Subsequence without including  
         # the element at current index 
-        printSubsequences(arr, index + 1, subarr,subar+[arr[index]]) 
+        yes = printSubsequences(arr, index + 1, subarr,subar+arr[index]) 
           
         # Subsequence including the element 
         # at current index 
-        printSubsequences(arr, index + 1,subarr+[arr[index]],subar)
+        no = printSubsequences(arr, index + 1,subarr+arr[index],subar)
 
-    return
+    return min(yes,no)
 
 if __name__ == "__main__":
 
@@ -54,5 +54,5 @@ if __name__ == "__main__":
 
     s = set()
 
-    printSubsequences(arr, 0, [],[]) 
-    print(min(s))
+    print(printSubsequences(arr, 0, 0,0)) 
+    
