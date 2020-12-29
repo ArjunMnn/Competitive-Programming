@@ -40,7 +40,7 @@ public:
                 
             }
             curs = nex;
-                step++;
+            step++;
         }
         return -1;
         
